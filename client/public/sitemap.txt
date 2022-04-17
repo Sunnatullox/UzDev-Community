@@ -1,0 +1,6 @@
+https://uzdev-community.herokuapp.com
+https://uzdev-community.herokuapp.com/signin
+https://uzdev-community.herokuapp.com/signup
+https://uzdev-community.herokuapp.com/posts
+https://uzdev-community.herokuapp.com/createpost
+https://uzdev-community.herokuapp.com/profile

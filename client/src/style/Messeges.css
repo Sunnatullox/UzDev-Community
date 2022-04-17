@@ -1,0 +1,55 @@
+.messeges{
+   /*  float: left; */
+    display: flex;
+    flex-direction:column ;
+    margin-top: 20px;
+    padding: 0 1em;
+}
+.messeges .floatMesseg{
+    background:white;
+    width: fit-content;
+    padding: 0.5em 0 0 0.5em
+}
+.messegesTop{
+    display: flex;
+}
+.senderName{
+    text-decoration: none;
+    display: inline-table;
+    padding:0 0.7em 0;
+}
+
+.messegesImg{
+    width: 32px;
+    height: 32px;
+    border-radius:50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+.messegesText{
+    padding:0 0.5em 0 2.5rem;
+    
+}
+.messegesBottom{
+    font-size: 12px;
+    display: flex;
+    justify-content:flex-start;
+    margin-top: -1em;
+}
+.messeges.own{
+    padding:0 1em;
+   border-radius:7px;
+   /* float: right; */
+   
+}
+.messeges.own .messegesBottom{
+    display: flex;
+    justify-content: end;
+}
+.messeges.own .floatMesseg{
+    background-color:rgb(250, 253, 220) !important;
+    align-self: self-end;
+}
+.messeges.own .messegesText{
+    padding: 0 2.5rem 0 0 ;
+}

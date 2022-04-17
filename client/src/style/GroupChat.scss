@@ -1,0 +1,343 @@
+/* memberGroup */
+
+.users_Serach_Result{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.members .image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.members .person {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.members .person .image {
+    float: left;
+    width: 23%;
+}
+
+.members .person .image img {
+    width: 100%;
+}
+
+.members .person .info {
+    float: left;
+    width: 65%;
+    margin-top: 3px;
+    margin-left: 10px;
+}
+
+.members .person .info h5 {
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+.members .person .info span {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 5px;
+    color: #6b8bd0;
+    background-color: #d5e5f7;
+}
+.memberIcon{
+    width: 1em;
+    margin-left: 0.5em;
+}
+.jounUser{
+    margin-left: auto !important;
+    font-size: 0.8rem !important;
+    cursor: pointer;
+    min-inline-size: max-content;
+    border: solid 1px #000;
+}
+.jounUser:hover{
+    background: gold !important;
+    color:#000 !important;
+}
+/*  */
+.groupChat{
+    height: calc(100vh - 79px);
+    display: flex;
+}
+.chatMenu{
+    height: 85vh;
+    overflow-y: hidden;
+    flex: 2;
+    background-color: ivory;
+}
+.chatMenuInput{
+    width: 90%;
+    padding: 10px 0;
+    border:none;
+    border-bottom: solid 1px gray;
+}
+.chatBox{
+    flex: 4.5;
+    height:  85vh;
+    overflow-y: hidden;
+
+}
+.chatOnline{
+    flex: 2;
+    height:  85vh;
+    overflow-y: hidden;
+}
+.chatMenuWrapper,.chatOnlineWrapper .chatMenuWrappers{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+}
+.quitUser{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 10px;
+    color: #6b8bd0;
+    background-color: #d5e5f7;
+    padding: 4px 6px;
+    border-radius: 5px;
+}
+.chatBoxWrapper{
+    position: relative;
+    background: url('../image/chatBg.jpg');
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+}
+.chatBoxTop{
+    height: 100%;
+    overflow-y: auto;
+}
+.chatBoxButtom{
+    margin-top: 5px;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.chatmessegesInput{
+    width: 88%;
+    height: 50px;
+    padding: 10px;
+    border-radius:5px;
+    border:solid 1px #0003
+}
+.chatSubmitButton{
+    width: 70px;
+    height: 40px;
+    border:none;
+    border-radius:5px;
+    cursor: pointer;
+    background-color:teal;
+    color:wheat;
+}
+.noChatGroup{
+    position: absolute;
+    top: 10%;
+    font-size: 50px;
+    color: rgb(224, 220, 200);
+    text-align: center;
+    cursor: default;
+    background: white;
+    margin-left: 0.3em;
+}
+
+/* group Hamburger Nav  */
+
+.navGroup input[type="checkbox"],
+.navGroup .hamburger-lines {
+  display: none;
+}
+
+.container {
+  max-width: 1200px;
+  width: 90%;
+  margin: auto;
+}
+
+.navGroup {
+  width: 100%;
+  color: #fff;
+  margin-top: -3em !important;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.menu-items {
+  order: 2;
+  display: flex;
+}
+.logo {
+  order: 1;
+  font-size: 1.8rem;
+}
+
+
+.navGroup a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.groupHeader{
+  margin-block-end: auto;
+  text-align: center;
+  font-weight: bold;
+  color:rgb(2, 154, 255) ;
+  flex: auto;
+
+}
+
+.deletGroup{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items:center;
+  background: rgba(6, 155, 255, 0.925);
+  width: 2em;
+  margin-top: 1em;
+  margin-right: 1em;
+  border-radius:50%;
+  height: 2em;
+  cursor: pointer;
+  .delGroup{
+    color:rgb(241, 1, 1)
+  }
+}
+
+@media (min-width:900px) and (max-width:1500px){
+    .navGroup{
+        display: none;
+    }
+}
+
+@media (min-width:250px) and(max-width: 900px) {
+  .navbar-container input[type="checkbox"],
+  .navbar-container .hamburger-lines {
+    display: block;
+  }
+
+  .navbar-container {
+    display: block;
+    position: relative;
+    height: 64px;
+  }
+
+  .navbar-container input[type="checkbox"] {
+    position: absolute;
+    display: block;
+    height: 32px;
+    width: 30px;
+    top: 20px;
+    left: 20px;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .navbar-container .hamburger-lines {
+    display: block;
+    height: 20px;
+    width: 26px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-container .hamburger-lines .line {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 10px;
+    background: #000;
+  }
+
+  .navbar-container .hamburger-lines .line1 {
+    transform-origin: 0% 0%;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .navbar-container .hamburger-lines .line2 {
+    transition: transform 0.1s ease-in-out;
+  }
+
+  .navbar-container .hamburger-lines .line3 {
+    transform-origin: 0% 100%;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .navGroup .menu-items {
+    padding-top: 100px;
+    background: ivory;
+    height: 100vh;
+    max-width: 300px;
+    transform: translate(-150%);
+    display: flex;
+    flex-direction: column;
+    margin-left: -40px;
+    padding-left: 40px;
+    transition: transform 0.5s ease-in-out;
+    overflow: scroll;
+  }
+
+  .navGroup .menu-items li {
+    margin-bottom: 1.8rem;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .logo {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 1.7rem;
+  }
+
+  .navbar-container input[type="checkbox"]:checked ~ .menu-items {
+    transform: translateX(0);
+  }
+
+  .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+    transform: rotate(45deg);
+  }
+
+  .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+    transform: scaleY(0);
+  }
+
+  .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+    transform: rotate(-45deg);
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar-container input[type="checkbox"]:checked ~ .logo {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .chatMenuWrapper, .chatMenu{
+    display: none;
+  }
+
+}

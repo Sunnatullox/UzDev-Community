@@ -1,0 +1,272 @@
+
+.post-button {
+#comment-trash {
+
+  max-width: 50px;
+  min-width: 50px;
+  height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    color: rgb(0, 0, 0);
+    border: none;
+    background-color: rgb(255, 0, 0);
+  }
+}
+/* showlike */
+
+.PostUserLike{
+  width: 3rem !important;
+  border-radius: 50% !important;
+  margin-right:1rem !important;
+  border:solid green 1px !important;
+}
+.PostUserUnLike{
+  background-color: green !important;
+  width: 3rem !important;
+  border-radius: 50% !important;
+  margin-right: 1rem !important;
+}
+
+.ClientLike{
+  background-color: green !important;
+  width: 3rem !important;
+  border-radius: 50% !important;
+  margin-right:1rem !important;
+}
+/* code plashad */
+
+
+
+
+//////// Colors
+$c-white: #fff;
+$c-red: #d5091b;
+$c-light_blue: #e8f3f6;
+$c-dark_blue: #2578b1;
+$c-grey_blue: #e0e5e7;
+$c-dark_grey: #435360;
+$c-light_grey: #afc4cd;
+
+//////// Defaults
+$d-border_radius: 5px;
+$d-transition_timing_function: ease-in-out;
+
+/////// Font sizes
+$f-small: 14px;
+$f-med: 16px;
+$f-large: 18px;
+$f-xlarge: 24px;
+
+//////// Breakpoints
+// this pairs with the respond mixin. 
+$breakpoints: (
+  med: 768px
+) !default;
+
+//////// Mixins
+// Remove default button styles
+@mixin remove_button_styles {
+  padding: 0;
+  border: 0;
+  line-height: normal;
+  overflow: visible;
+  color: inherit;
+  background: none;
+  font: inherit;
+  -webkit-appearance: button;
+  user-select: none;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+}
+
+// Grid spacing
+@mixin padding--horizontal {
+  // be explicit on left/right in case a top/bottom is assigned.
+  @include respond((
+    padding-left: (
+      b: 12px,
+      med: 40px
+    ),
+    padding-right: (
+      b: 12px,
+      med: 40px
+    )
+  ));
+}
+
+@mixin padding--vertical {
+  // be explicit on top/bottom in case a left/right is assigned.
+  @include respond((
+    padding-top: (
+      b: 20px,
+      med: 30px
+    ),
+    padding-bottom: (
+      b: 30px,
+      med: 50px
+    )
+  ));
+}
+
+// Helper function for deep setting in maps. Needed for the respond mixin
+// Deep-set by Hugo Giraudel
+@function map-deep-set($map, $keys.../*, $value */) {
+  $map-list: ($map,);
+  $result: null;
+
+  @if length($keys) == 2 {
+    @return map-merge($map, (nth($keys, 1): nth($keys, -1)));
+  }
+
+  @for $i from 1 through length($keys) - 2 {
+    $map-list: append($map-list, map-get(nth($map-list, -1), nth($keys, $i)));
+  }
+
+  @for $i from length($map-list) through 1 {
+    $result: map-merge(nth($map-list, $i), (nth($keys, $i): if($i == length($map-list), nth($keys, -1), $result)));
+  }
+
+  @return $result;
+}
+
+// Respond mixin
+// Notes and details in my other pen at https://codepen.io/yaksandpie/pen/aBKQKa
+@mixin respond($ruleset-map) {
+  // define basic structure of master ruleset map and include empty 'base' map
+  $all: (b: ());
+
+  // set up breakpoint maps from the global $breakpoints.
+  @each $bp, $width in $breakpoints {
+    $all: map-merge($all, ($bp: (bp: $width)));
+  }
+
+  // to not spam @media queries, put rules in the correct breakpoint map
+  @each $prop, $rules in $ruleset-map {
+    @each $breakpoint, $val in $rules {
+      $all: map-deep-set($all, $breakpoint, $prop, $val);
+    }
+  }
+
+  @each $breakpoint, $bp-map in $all {
+    @if map-has-key($bp-map, bp) {
+      @media (min-width: map-get($bp-map, bp)) {
+        @each $prop, $val in $bp-map {
+          @if $prop != bp {
+            #{$prop}: $val;
+          }
+        }
+      }
+    } @else {
+      @each $prop, $val in $bp-map {
+        #{$prop}: $val;
+      }
+    }
+  }
+};
+
+
+/*  */
+.form__control-wrapper {
+  margin-bottom: 30px
+}
+
+.contact__form {
+  @include padding--horizontal;
+  @include padding--vertical;
+}
+
+.contact__form-user__info {
+  @include respond((
+    display: (
+      med: flex
+    )
+  ));
+}
+
+.contact__form-user__info__email {
+  @include respond((
+    width: (
+      med: 50%
+    ),
+    margin-left: (
+      med: 22px
+    )
+  ));
+}
+
+.contact__form-user__info__name {
+  @include respond((
+    width: (
+      med: 50%
+    ),
+    margin-right: (
+      med: 22px
+    )
+  ));
+}
+.form__label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  cursor: pointer;
+}
+
+.form__textarea {
+  height: 190px; 
+  
+  @include respond((
+    height: (
+      b: 100px,
+      med: 190px
+    )
+  ));
+}
+
+
+.form__input,
+.form__textarea {
+  appearance: none;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $c-light_grey;
+  border-radius: $d-border_radius;
+  outline: 0;
+  font-size: $f-med;
+  color: $c-dark_grey;
+  transition: border-color 300ms $d-transition_timing_function;
+  
+  &:focus {
+    border-color: darken($c-light_grey, 30%);
+  }
+}
+.form__button {
+  $button-background: $c-dark_blue;
+
+  @include remove_button_styles;
+  height: 60px;
+  width: 200px;
+  border-radius: $d-border_radius;
+  background: $button-background;
+  color: $c-white;
+  // Using helvetica for the button for the lighter weight
+  font-family: Helvetica, sans-serif;
+  font-weight: 200;
+  cursor: pointer;
+  box-shadow: 1px 1px 5px 0 rgba($c-dark_grey, .7);
+  transition:
+    background 300ms $d-transition_timing_function,
+    opacity 300ms $d-transition_timing_function;
+  
+  &:hover {
+    background: lighten($button-background, 10%);
+  }
+}
