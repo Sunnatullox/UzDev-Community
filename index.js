@@ -1,34 +1,52 @@
-const express= require("express");
+require("dotenv").config()
+const cluster = require("cluster")
+const express = require("express");
 const app = express();
-const PORT = process.env.PORT|| 5000
 const path = require("path")
 const cors = require("cors")
-const mongose = require("mongoose");
-const {MONGO_URL} = require("./config/key")
-mongose.connect(MONGO_URL);
+const mongoose = require("mongoose")
+const compression = require("compression")
+const fileUpload = require("express-fileupload")
+const  errorHandler = require("./middleware/Errors.js")
+const  notFoundHandler = require("./middleware/notFounHandler.js")
+const DB_MONGODB_URL = process.env.DB_MONGODB_URL
 
+const swaggerUI = require("swagger-ui-express");
+const Yaml = require("yamljs")
+const SwaggerDoc = Yaml.load("./documentation/api.yaml")
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(SwaggerDoc))
+mongoose.connect(DB_MONGODB_URL, () => console.log("mongodb connected sucessfuly"));
 
-require("./models/users");
-require("./models/post");
-require("./models/comments");
-require("./models/group");
-require("./models/GroupMessegs");
-app.use(cors())
-app.use(express.json())
-app.use(require("./routes/auth"));
-app.use(require("./routes/post"));
-app.use(require("./routes/comment"));
-app.use(require("./routes/User"));
-app.use(require("./routes/group"));
-app.use(require("./routes/Messeges"));
+let PORT = process.env.PORT || 5000
+    require('./models/users')
+    require('./models/superAdmin')
+    require('./models/courses')
+    require('./models/courseLesson')
+    require('./models/courseComment')
+    require('./models/courseBooks')
+    require('./models/catigoryModel')
+    
+    app.use(compression())
+    app.use(fileUpload())
+    
+    app.use(cors({
+        origin:"*"
+    }));
+    app.use(express.json())
+    app.use(express.static(path.resolve(__dirname, "CourseFile")))
+    app.use(require('./routes/auth'))
+    app.use(require('./routes/superAdmin'))
+    app.use(require('./routes/adminCourse'))
+    app.use(require('./routes/courseLesson'))
+    app.use(require('./routes/courseComment'))
+    app.use(require('./routes/userStudend'))
+    
+    
+    // error handlera
+    app.use(errorHandler)
+    app.use(notFoundHandler)
 
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static("client/build"))
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname,"client", "build","index.html" ))
-    })
-}
 
 app.listen(PORT, () => {
-    console.log(`Server has been started on port ${PORT}`);
+    console.log("SERVER ON PORT LISTEN " + PORT)
 })

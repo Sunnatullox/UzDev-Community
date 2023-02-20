@@ -1,4 +1,4 @@
 module.exports ={
-    MONGO_URL :"mongodb+srv://Sunnatullox:eeu5WMYTLOy4UfVo@cluster0.zfpby.mongodb.net/DEV_overflow",
-    JWT_SECRET: "sunnatulloxhayitov"
+    DB_MONGODB_URL :"mongodb+srv://Sunnatullox:BqOKKnNQBG1xpIdD@cluster0.lfbrh.mongodb.net/Wesco-task",
+    JWT_SECRET: "sunnatullox"
 }

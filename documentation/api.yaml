@@ -1,0 +1,2056 @@
+openapi: 3.0.3
+info:
+  title: Westco Tack API Course Project Documentation.
+  version: 1.0.11
+  license:
+    name: Apache 2.0
+    url: "http://apache.org/"
+servers:
+  - url: https://educations-apis.herokuapp.com/
+    description: Https Hosting Heroku
+  - url: http://localhost:5000
+    description: Dev Server on Port
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
+paths:
+
+  /?keyword=&category=&pageLimt=10:
+    get:
+      tags:
+        - Course
+      summary: Get All Course
+      description: Get All Course Platform
+      parameters:
+      - in: query
+        name: keyword
+        schema:
+          type: string
+        description: Get Course Search
+        example: java
+      - in: query
+        name: category
+        schema:
+          type: string
+        description: Get Course Search
+        example: C++
+      - in: query
+        name: pageLimt
+        required: true
+        schema:
+          type: integer
+        description: Get Course Limit
+        example: 10
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  authorId:
+                    type: array
+                  price:
+                    type: number
+                  courseImg:
+                    type: string
+                  courseUsersId:
+                    type: array
+                  reating:
+                    type: number
+                  description:
+                    type: string
+                  lessons:
+                    type: array
+                  books:
+                    type: array
+                  comments:
+                    type: array
+                  createdAt:
+                    type: string
+                  updatedAt:
+                    type: string
+              example:
+                _id: 62ae948249ef0d92e405b22b
+                name: Node.js darslari 0 dan pro gacha
+                authorId: []
+                price: 1500000
+                courseImg: 18d181a6-d74b-40b3-b886-c409d76a6d21-file-nodejs_corse.png
+                courseUsersId: []
+                reating: 0
+                description: ""
+                lessons: []
+                books: []
+                comments: []
+                createdAt: "2022-06-19T03:14:10.029Z"
+                updatedAt: "2022-06-19T05:55:21.434Z"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /user/getCourseOne/{id}:
+    get:
+      summary: Get one course user
+      tags:
+        - Course
+      description: Get one course comment
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Get Course One for course Id
+          example: 62b241cec57596d4147cf96c
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: 
+                    type: string
+                  name: 
+                    type: string
+                  courseId:
+                    type: string
+                  userId: 
+                    type: string
+                  description:
+                    type: string
+                  createdAt:
+                    type: string
+                  updatedAt:
+                    type: string
+              example:
+                "_id": "62ae9ca688144d2d246e879d"
+                "courseId": "62ae95af49ef0d92e405b231"
+                "name": "Sunna"
+                "description": "Assalamu Aleykum menga bu React Next JS darslari juda maqul bo'ldi "
+                "userId": "62ac7f3fa525215eeede092f"
+                "createdAt": "2022-06-19T03:48:54.490Z"
+                "updatedAt": "2022-06-19T03:48:54.490Z"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /getCourseComment/{id}:
+    get:
+      summary: Get one course comment
+      tags:
+        - Course
+      description: Get one course comment
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Get Course One for course Id
+          example: 62ae9ca688144d2d246e879d
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  name:
+                    type:  string
+                  authorId:
+                    type:  array
+                  price:
+                    type: number
+                  courseImg:
+                    type: string
+                  courseUsersId:
+                    type: array
+                  reating:
+                    type: number
+                  description:
+                    type:  string
+                  lessons: 
+                    type: array
+                  books:
+                    type: array
+                  comments:
+                    type: array
+                  createdAt:
+                    type: string
+                  updatedAt:
+                    type: string
+              example:
+                _id: 62ae948249ef0d92e405b22b
+                name: Node.js darslari 0 dan pro gacha
+                authorId: []
+                price: 1500000
+                courseImg: 18d181a6-d74b-40b3-b886-c409d76a6d21-file-nodejs_corse.png
+                courseUsersId: []
+                reating: 0
+                description: ""
+                lessons: []
+                books: []
+                comments: []
+                createdAt: "2022-06-19T03:14:10.029Z"
+                updatedAt: "2022-06-19T05:55:21.434Z"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /getCourseBook/{id}:
+    get:
+      summary: Get One Course Comment
+      tags:
+        - Course
+      description: Get one Course Comment
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Get Course One for course Id
+          example: 62ae9ca688144d2d246e879d
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: string
+                  name: string
+                  courseId: string
+                  books: string
+                  urlBooks: string
+                  description: string
+                  createdAt: string
+                  updatedAt: string
+              example:
+                _id: string
+                name: string
+                courseId: string
+                books: string
+                urlBooks: string
+                description: string
+                createdAt: string
+                updatedAt: string
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /signUp:
+    post:
+      summary: Creates a Users
+      tags:
+        - Register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              example:
+                name: Sunnatullox
+                email: Sunnatullox@gmail.com
+                password: "12345"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: integer
+                  name: string
+                  email: string
+                  password: string
+                  userLessons: array
+                  userAdmin: boolen
+                  userCourseId: array
+              example:
+                _id: 62ae948249ef0d92e405b22b
+                name: Sunnatullox
+                email: Sunnatullox@gmail.com
+                password: "12345"
+                userLessons: []
+                userAdmin: false
+                userCourseId: []
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /signIn:
+    post:
+      summary: Sign In Users
+      tags:
+        - Register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              example:
+                email: Sunnatullox@gmail.com
+                password: "12345"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token: integer
+                  _id: integer
+                  name: string
+                  email: string
+                  password: string
+                  userLessons: array
+                  userAdmin: boolen
+                  userCourseId: array
+              example:
+                token: TU3ODExNjB9.RoCiHr5wflJbYUWs67NIK4IL3PQcM6fTDg2eeBGsJWo
+                _id: 62ae948249ef0d92e405b22b
+                name: Sunnatullox
+                email: Sunnatullox@gmail.com
+                password: $2a$10$4JUm3qBt.FPGxnqcfYZ08./loDWvYA8VpHxDYdMqVBccieZv/vuBua
+                userLessons: []
+                userAdmin: false
+                userCourseId: []
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/signUp:
+    post:
+      summary: Sign Up Super Admin
+      tags:
+        - Register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                secretInfo:
+                  type: string
+              example:
+                name: Sunna
+                email: Sunna@gmail.com
+                password: "12345Sunna"
+                secretInfo: Men Uzbekistonda yashayman!
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: integer
+                  name: string
+                  email: string
+                  password: string
+                  secretInfo: string
+                  createdAt: string
+                  updatedAt: string
+              example:
+                _id: 62af3d203816e616bd006514
+                name: Sunnatullox
+                email: Sunnatullox@gmail.com
+                password: $2a$10$vF7DFPtLrXo4FXpO2vm7U.GXPHpmJWgVWD51rVsXVgL84cAzjyPrW
+                secretInfo: $2a$10$p/oRKgRopkRvx5/a/MTp/OEnhVk7wx9i8SIKJkVFPPipQGUUBSX2S
+                createdAt: 2022-06-19T15:13:36.493+00:00
+                updatedAt: 2022-06-20T14:01:43.788+00:00
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/signIn:
+    post:
+      summary: Sign In Super Admin
+      tags:
+        - Register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+              example:
+                email: Sunna@gmail.com
+                password: "12345Sunna"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token: integer
+                  _id: integer
+                  name: string
+                  email: string
+                  password: string
+                  secretInfo: string
+                  createdAt: string
+                  updatedAt: string
+              example:
+                token: TU3ODExNjB9.RoCiHr5wflJbYUWs67NIK4IL3PQcM6fTDg2eeBGsJWo
+                _id: 62af3d203816e616bd006514
+                name: Sunnatullox
+                email: Sunnatullox@gmail.com
+                password: $2a$10$vF7DFPtLrXo4FXpO2vm7U.GXPHpmJWgVWD51rVsXVgL84cAzjyPrW
+                secretInfo: $2a$10$p/oRKgRopkRvx5/a/MTp/OEnhVk7wx9i8SIKJkVFPPipQGUUBSX2S
+                createdAt: 2022-06-19T15:13:36.493+00:00
+                updatedAt: 2022-06-20T14:01:43.788+00:00
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/createCategry:
+    post:
+      summary: Sign In Super Admin
+      tags:
+        - Super Admin
+      description: Super Admin created Category
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                keywords:
+                    type: array
+                categoryImage:
+                  type: string
+                  format: binary
+                categoryId:
+                  type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: 
+                    type: string
+                  title:
+                    type: string
+                  description: 
+                    type: string
+                  categoryImage:
+                    type: string
+                  keywords: 
+                    type: array
+                  isActive: 
+                    type: string
+                  subcatigory:
+                    type: array
+                  createdAt: 
+                    type: string
+                  updatedAt: 
+                    type: string
+              example:
+                title: JavaScript
+                description: JavaScript category
+                categoryImage: /196544b0-7690-4348-a96d-4daf06ef1a08C.jpg
+                keywords: []
+                isActive: true
+                _id: 636d258bf85413dea3d454d2
+                subcatigory: []
+                createdAt: 2022-11-10T16:23:39.238Z
+                updatedAt: 2022-11-10T16:23:39.238Z
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/getCategrys:
+    get:
+      summary: Get one course user
+      tags:
+        - Super Admin
+      description: Get one course comment
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: 
+                    type: string
+                  name: 
+                    type: string
+                  courseId:
+                    type: string
+                  userId: 
+                    type: string
+                  description:
+                    type: string
+                  createdAt:
+                    type: string
+                  updatedAt:
+                    type: string
+              example:
+                "_id": "62ae9ca688144d2d246e879d"
+                "courseId": "62ae95af49ef0d92e405b231"
+                "name": "Sunna"
+                "description": "Assalamu Aleykum menga bu React Next JS darslari juda maqul bo'ldi "
+                "userId": "62ac7f3fa525215eeede092f"
+                "createdAt": "2022-06-19T03:48:54.490Z"
+                "updatedAt": "2022-06-19T03:48:54.490Z"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/updateCategry:
+    put:
+      summary: Sign In Super Admin
+      tags:
+        - Super Admin
+      description: Super Admin update Category
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                keywords:
+                    type: array
+                isActive:
+                  type: boolean
+                categoryImage:
+                  type: string
+                  format: binary
+                categoryId:
+                  type: string
+                subCategoryId:
+                  type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: 
+                    type: string
+                  title:
+                    type: string
+                  description: 
+                    type: string
+                  categoryImage:
+                    type: string
+                  keywords: 
+                    type: array
+                  isActive: 
+                    type: string
+                  subcatigory:
+                    type: array
+                  createdAt: 
+                    type: string
+                  updatedAt: 
+                    type: string
+              example:
+                title: JavaScript
+                description: JavaScript category
+                categoryImage: /196544b0-7690-4348-a96d-4daf06ef1a08C.jpg
+                keywords: []
+                isActive: true
+                _id: 636d258bf85413dea3d454d2
+                subcatigory: []
+                createdAt: 2022-11-10T16:23:39.238Z
+                updatedAt: 2022-11-10T16:23:39.238Z
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/deletedCategry:
+    delete:
+      summary: Sign In Super Admin
+      tags:
+        - Super Admin
+      description: Super Admin created Category
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                categoryId:
+                  type: string
+                subCategoryId:
+                  type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+              example:
+                message: category yokiy subCategory muvafaqiyatli o'chirildi.
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/updateIsActiveCourse:
+    put:
+      summary: Sign In Super Admin
+      tags:
+        - Super Admin
+      description: Super Admin created Category
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                isActive:
+                  type: boolean
+                courseId:
+                  type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+              example:
+                message: Course muvafaqiyatli active okiy neActive bo'ldi.
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/updateIsActiveLesson:
+    put:
+      summary: Sign In Super Admin
+      tags:
+        - Super Admin
+      description: Super Admin created Category
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                isActive:
+                  type: boolean
+                lessonId:
+                  type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+              example:
+                message: lesson(dars) muvafaqiyatli active okiy neActive bo'ldi.
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/updateIsActiveCatigory:
+    put:
+      summary: Sign In Super Admin
+      tags:
+        - Super Admin
+      description: Super Admin created Category
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                isActive:
+                  type: boolean
+                categoryId:
+                  type: string
+                subCategoryId:
+                  type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+              example:
+                message: category yokiy subCategory muvafaqiyatli active okiy neActive bo'ldi.
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/usersStatus:
+    get:
+      summary: Get All Users registered platform status
+      tags:
+        - Super Admin
+      description: Get All Users registered Platform
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                users:
+                  _id: 1
+                  total: 19
+        404:
+          description: Not Found user status
+        500:
+          description: Internal Server Error
+  
+  /superAdmin/priceCourseSold:
+    get:
+      summary: Get All Users payment
+      tags:
+        - Super Admin
+      description: Get All Users registered Platform
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                usersPayment:
+                  _id: 1
+                  total: 1500000
+        404:
+          description: Not Found user status
+        500:
+          description: Internal Server Error
+          
+  /superAdmin/getAllUsers:
+    get:
+      summary: Get All Users
+      tags:
+        - Super Admin
+      description: Get All Users registered Platform
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token: integer
+                  _id: integer
+                  name: string
+                  email: string
+                  password: string
+                  userLessons: array
+                  userAdmin: boolen
+                  userCourseId: array
+              example:
+                count: 1
+                users:
+                  token: TU3ODExNjB9.RoCiHr5wflJbYUWs67NIK4IL3PQcM6fTDg2eeBGsJWo
+                  _id: 62ae948249ef0d92e405b22b
+                  name: Sunnatullox
+                  email: Sunnatullox@gmail.com
+                  password: $2a$10$4JUm3qBt.FPGxnqcfYZ08./loDWvYA8VpHxDYdMqVBccieZv/vuBua
+                  userLessons: []
+                  userAdmin: false
+                  userCourseId: []
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+  
+  /superAdmin/getAllAdmin:
+    get:
+      summary: Get All Users
+      tags:
+        - Super Admin
+      description: Get All Users registered Platform
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token: integer
+                  _id: integer
+                  name: string
+                  email: string
+                  password: string
+                  userLessons: array
+                  userAdmin: boolen
+                  userCourseId: array
+              example:
+                count: 1
+                users:
+                  token: TU3ODExNjB9.RoCiHr5wflJbYUWs67NIK4IL3PQcM6fTDg2eeBGsJWo
+                  _id: 62ae948249ef0d92e405b22b
+                  name: Sunnatullox
+                  email: Sunnatullox@gmail.com
+                  password: $2a$10$4JUm3qBt.FPGxnqcfYZ08./loDWvYA8VpHxDYdMqVBccieZv/vuBua
+                  userLessons: []
+                  userAdmin: false
+                  userCourseId: []
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/getOneUser/{id}:
+    get:
+      summary: Get One User
+      tags:
+        - Super Admin
+      description: Get one user registered platform
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Get User One for user Id
+          example: 62ac7f3fa525215eeede092f
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: integer
+                  name: string
+                  email: string
+                  password: string
+                  userLessons: array
+                  userAdmin: boolen
+                  userCourseId: array
+              example:
+                count: 1
+                users:
+                  _id: 62ae948249ef0d92e405b22b
+                  name: Sunnatullox
+                  email: Sunnatullox@gmail.com
+                  password: $2a$10$4JUm3qBt.FPGxnqcfYZ08./loDWvYA8VpHxDYdMqVBccieZv/vuBua
+                  userLessons: []
+                  userAdmin: false
+                  userCourseId: []
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/createAdmin/{id}:
+    put:
+      summary: Created user Admin
+      tags:
+        - Super Admin
+      description: Get All Course Platform
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Get User One for user Id
+          example: 62ac7f3fa525215eeede092f
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description: created admin required 'false' && 'true'
+                userAdmin:
+                  type: string
+              example:
+                userAdmin: "true"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: integer
+                  name: string
+                  email: string
+                  password: string
+                  userLessons: array
+                  userAdmin: boolen
+                  userCourseId: array
+              example:
+                count: 1
+                users:
+                  _id: 62ae948249ef0d92e405b22b
+                  name: Sunnatullox
+                  email: sunnatullox@gmail.com
+                  password: $2a$10$4JUm3qBt.FPGxnqcfYZ08./loDWvYA8VpHxDYdMqVBccieZv/vuBua
+                  userLessons: []
+                  userAdmin: false
+                  userCourseId: []
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/updateUser/{id}:
+    put:
+      summary: Super Admin updated user
+      tags:
+        - Super Admin
+      description: Get All Course Platform
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Get User One for user Id
+          example: 62ac7f3fa525215eeede092f
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: string
+                email: string
+                password: string
+              example:
+                name: Sunnatullox
+                email: sunnatullox@gmail.com
+                password: 12345
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: integer
+                  name: string
+                  email: string
+                  password: string
+                  userLessons: array
+                  userAdmin: boolen
+                  userCourseId: array
+              example:
+                count: 1
+                users:
+                  _id: 62ae948249ef0d92e405b22b
+                  name: Sunnatullox
+                  email: Sunnatullox@gmail.com
+                  password: $2a$10$4JUm3qBt.FPGxnqcfYZ08./loDWvYA8VpHxDYdMqVBccieZv/vuBua
+                  userLessons: []
+                  userAdmin: false
+                  userCourseId: []
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/deleteUser/{id}:
+    delete:
+      summary: Super Admin delete user
+      tags:
+        - Super Admin
+      description: Get All Course Platform
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Get User One for user Id
+          example: 62ac7f3fa525215eeede092f
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                user: string
+              example:
+                user: User Deleted
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/superAdminUpdatePass/acountDataCheck:
+    post:
+      summary: Forgot password? Super Admin check Password
+      tags:
+        - Super Admin
+      description: When the Super Admin forgets the password, check the information to change the password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: string
+                secretInfo: string
+              example:
+                email: Sunna@gmail.com
+                secretInfo: Men Uzbekistonda yashayman!
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                tyep: object
+                properties:
+                Checked: boolen
+              example:
+                Checked: true
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/updatePassword:
+    put:
+      summary: Forgot password? Super Admin Update Password
+      tags:
+        - Super Admin
+      description: When the Super Admin forgets the password, check the information to change the password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password: string
+                adminId: string
+              example:
+                password: "123456789"
+                adminId: 62b17319c6d4c0fe6ff19aa1
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  password: string
+              example:
+                password: Secsess fully updated
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /superAdmin/updateProfile:
+    post:
+      summary: Super Admin Update Profile
+      tags:
+        - Super Admin
+      description: To change the Super Admin cabinet data, you must first enter the old password and the security word and then the new ones
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                adminId:
+                  type: string
+                name:
+                  type: string
+                email:
+                  type: string
+                oldPassword:
+                  type: string
+                newPassword:
+                  type: string
+                oldSecretInfo:
+                  type: string
+                newSecretInfo:
+                  type: string
+                adminAvatar:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: OK
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  adminProfile: string
+              example:
+                adminProfile: Secsess fully updated Super Admin Profile
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /user/cuourseEnrole/{id}:
+    put:
+      summary: User Course enrole
+      tags:
+        - User Course
+      description: We add the user to the course and we add the user ID to the course
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: this is the course ID 
+          example: 62ae948249ef0d92e405b22b
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId: 
+                  type: number
+                userPay: 
+                  type: number
+            example:
+              userId: "62af2d6316c2ba27f61eb8df"
+              userPay: "1500000"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userEnroled:
+                    type: string
+                example:
+                  userEnroled: "User sucsess fuly enrolled cours"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /user/getCourseProfile/{id}:
+    get:
+      summary: Get One User
+      tags:
+        - User Course
+      description: Get user courses
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Get Courses for user Id
+          example: 62b23b7a7b947f6c0c88245b
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: string
+                  name: string
+                  authorId: array
+                  price: number
+                  courseImg: string
+                  courseUsersId: array
+                  reating: number
+                  description: string
+                  lessons: array
+                  books: array
+                  comments: array
+                  createdAt: string
+                  updatedAt: string
+              example:
+                _id: 62ae948249ef0d92e405b22b
+                name: Node.js darslari 0 dan pro gacha
+                authorId: []
+                price: 1500000
+                courseImg: 18d181a6-d74b-40b3-b886-c409d76a6d21-file-nodejs_corse.png
+                courseUsersId: []
+                reating: 0
+                description: ""
+                lessons: []
+                books: []
+                comments: []
+                createdAt: "2022-06-19T03:14:10.029Z"
+                updatedAt: "2022-06-19T05:55:21.434Z"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /user/getCourseOneProfile/{id}:
+    get:
+      summary: User Profile get course One
+      tags:
+        - User Course
+      description: Get one Course
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Get Course One for course Id
+          example: 62aec4b4edf4613e87f85cb6
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: string
+                  name: string
+                  authorId: array
+                  price: number
+                  courseImg: string
+                  courseUsersId: array
+                  reating: number
+                  description: string
+                  lessons: array
+                  books: array
+                  comments: array
+                  createdAt: string
+                  updatedAt: string
+              example:
+                _id: 62ae948249ef0d92e405b22b
+                name: Node.js darslari 0 dan pro gacha
+                authorId: []
+                price: 1500000
+                courseImg: 18d181a6-d74b-40b3-b886-c409d76a6d21-file-nodejs_corse.png
+                courseUsersId: []
+                reating: 0
+                description: ""
+                lessons: []
+                books: []
+                comments: []
+                createdAt: "2022-06-19T03:14:10.029Z"
+                updatedAt: "2022-06-19T05:55:21.434Z"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  # /user/courseRate/{id}:
+  #   post:
+  #     summary: User Profile get course One
+  #     tags:
+  #       - User Course
+  #     description: Get one Course
+  #     parameters:
+  #       - in: path
+  #         name: id
+  #         schema:
+  #           type: string
+  #         required: true
+  #         description: course id for the user to rate
+  #         example: 62aec4b4edf4613e87f85cb6
+  #     requestBody:
+  #       required: true
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: object
+  #             properties:
+  #               userId:
+  #                 type: string
+  #               rating:
+  #                 type: string
+  #             example:
+  #               userId: 62b216049920204eb56c309b
+  #               rating: {5:1}
+  #     responses:
+  #       200:
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #             example:
+  #               msg: "kurga baho qo'ydingiz"
+  #       404:
+  #         description: Not Found Course
+  #       500:
+  #         description: Internal Server Error
+
+  /user/userCourseDelete/{id}:
+    put:
+      summary: User course delete
+      tags:
+        - User Course
+      description: We add the user to the course and we add the user ID to the course
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: this is the course ID to add to user cursors
+          example: 62ae948249ef0d92e405b22b
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+              example:
+                userId: "62af2d6316c2ba27f61eb8df"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userEnroled:
+                    type: string
+              example:
+                userEnroled: "User sucsess fuly enrolled cours"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /user/profileUpdate:
+    put:
+      summary: Super Admin Update Profile
+      tags:
+        - User Course
+      description: To change the Super Admin cabinet data, you must first enter the old password and the security word and then the new ones
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                name:
+                  type: string
+                email:
+                  type: string
+                oldPassword:
+                  type: string
+                newPassword:
+                  type: string
+                userAvatar:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: OK
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  adminProfile: string
+              example:
+                adminProfile: Secsess fully updated User Profile
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /user/forgotPassword/searchUser:
+    post:
+      summary: User forget password update
+      tags:
+        - User Course
+      description: When you forget the password, we confirm that the user is registered by email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              example:
+                email: Sunna@gmail.com
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token: integer
+                  _id: integer
+                  name: string
+                  email: string
+                  password: string
+                  secretInfo: string
+                  createdAt: string
+                  updatedAt: string
+              example:
+                _id: 62af3d203816e616bd006514
+                name: Sunnatullox
+                email: Sunnatullox@gmail.com
+                password: $2a$10$vF7DFPtLrXo4FXpO2vm7U.GXPHpmJWgVWD51rVsXVgL84cAzjyPrW
+                secretInfo: $2a$10$p/oRKgRopkRvx5/a/MTp/OEnhVk7wx9i8SIKJkVFPPipQGUUBSX2S
+                createdAt: 2022-06-19T15:13:36.493+00:00
+                updatedAt: 2022-06-20T14:01:43.788+00:00
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /user/fotgetPassword/updatedPasword:
+    post:
+      summary: User forget password update
+      tags:
+        - User Course
+      description: When you forget the password, we confirm that the user is registered by email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                password:
+                  type: string
+              example:
+                userId: 62af2d6316c2ba27f61eb8df
+                password: "12345"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: integer
+                  name: string
+                  email: string
+                  password: string
+                  secretInfo: string
+                  createdAt: string
+                  updatedAt: string
+              example:
+                _id: 62af3d203816e616bd006514
+                name: Sunnatullox
+                email: Sunnatullox@gmail.com
+                password: $2a$10$vF7DFPtLrXo4FXpO2vm7U.GXPHpmJWgVWD51rVsXVgL84cAzjyPrW
+                secretInfo: $2a$10$p/oRKgRopkRvx5/a/MTp/OEnhVk7wx9i8SIKJkVFPPipQGUUBSX2S
+                createdAt: 2022-06-19T15:13:36.493+00:00
+                updatedAt: 2022-06-20T14:01:43.788+00:00
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /admin/courseCreate:
+    post:
+      summary: admin Create Course
+      tags:
+        - Admin Course
+      description: Creates Course
+      consumes:
+        - multipart/form-data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                authorId:
+                  type: string
+                name:
+                  type: string
+                price:
+                  type: string
+                catigory:
+                  type: string
+                description:
+                  type: string
+                courseImg:
+                  type: string
+                  format: binary
+                courseLogo:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: OK
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  adminProfile: string
+              example:
+                adminProfile: Secsess fully updated User Profile
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /admin/courseUpdate/{id}:
+    put:
+      summary: User course update
+      tags:
+        - Admin Course
+      description: We add the user to the course and we add the user ID to the course
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: this is the course ID to updated cours Admin
+          example: 62b241cec57596d4147cf96c
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: string
+                descrition:
+                  type: string
+                courseImg:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: OK
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  userEnroled: string
+              example:
+                userEnroled: "admin updated cours sucsess fully"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /admin/courseDelete/{id}:
+    delete:
+      summary: Admin course delete
+      tags:
+        - Admin Course
+      description: admin Delete course
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: this is the course ID to Admin deleted course
+          example: 62b20de847fc3dfb699ec2a7
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deletedCourse: string
+              example:
+                deletedCourse: "Admin sucsess fuly deleted cours"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /user/courseComment/create:
+    post:
+      summary: User Course Comment create
+      tags:
+        - User Course
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                courseId:
+                  type: string
+                userId:
+                  type: string
+                name:
+                  type: string
+                description:
+                  type: string
+              example:
+                courseId: 62aec4b4edf4613e87f85cb6
+                userId: 62aeb9b09d6840a18ff77f47
+                name: Sunnatullox
+                description: Kurs Darslari qachon qo'yiladi
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: integer
+                  courseId: integer
+                  name: string
+                  description: string
+                  userId: string
+                  createdAt: string
+                  updatedAt: string
+              example:
+                "_id": "62b216049920204eb56c309b"
+                "userId": "62aeb9b09d6840a18ff77f47"
+                "courseId": "62aec4b4edf4613e87f85cb6"
+                "name": "Sunnatullox"
+                "description": "Kurs Darslari qachon qo'yiladi?"
+                "createdAt": "2022-06-21T19:03:32.308Z"
+                "updatedAt": "2022-06-21T19:03:32.308Z"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /user/courseComment/update/{id}:
+    put:
+      summary: User course comment update
+      tags:
+        - User Course
+      description: User Course Comment upate
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: this is the Comment ID to updated comment user
+          example: 62b216049920204eb56c309b
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+              example:
+                name: Sunnatullox
+                description: Kurs Darslari qachon qo'yiladi
+      responses:
+        200:
+          description: OK
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  _id: integer
+                  courseId: integer
+                  name: string
+                  description: string
+                  userId: string
+                  createdAt: string
+                  updatedAt: string
+              example:
+                "_id": "62b216049920204eb56c309b"
+                "userId": "62aeb9b09d6840a18ff77f47"
+                "courseId": "62aec4b4edf4613e87f85cb6"
+                "name": "Sunnatullox"
+                "description": "Kurs Darslari qachon qo'yiladi?"
+                "createdAt": "2022-06-21T19:03:32.308Z"
+                "updatedAt": "2022-06-21T19:03:32.308Z"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /user/courseComment/delete/{id}:
+    delete:
+      put:
+      summary: User delete course comment
+      tags:
+        - User Course
+      description: user Delete course commet
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: this is the course ID to Admin deleted course
+          example: 62b216049920204eb56c309b
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                 deletedCourse: string
+              example:
+                deletedCourse: "User sucsess fuly deleted cours comment"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /admin/lessson/create:
+    post:
+      summary: Admin Add Lesson create
+      tags:
+        - Admin Course
+      description: Admin upload Lesson
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                courseId:
+                  type: string
+                adminId:
+                  type: string
+                description:
+                  type: string
+                lessonVideo:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: OK
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  userEnroled: string
+              example:
+                userEnroled: "admin created lesson sucsess fully"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /admin/lesson/update/{id}:
+    put:
+      summary: Admin course Lesson update
+      tags:
+        - Admin Course
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: this is the lesson ID to Admin updated lesson
+          example: 62b216049920204eb56c309b
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                lessonVideo:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: OK
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  userEnroled: string
+              example:
+                userEnroled: "admin update lesson sucsess fully"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /admin/lesson/delete/{id}:
+    delete:
+      summary: Admin delete course lesson
+      tags:
+        - Admin Course
+      description: Admin Delete course lesson
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: this is the lesson ID to Admin deleted course lesson
+          example: 62aec016a745eeaa456ff998
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deletedCourse: string
+              example:
+                deletedCourse: "User sucsess fuly deleted cours comment"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /admin/courseBooks/create:
+    post:
+      summary: Admin Add Lesson create
+      tags:
+        - Admin Course
+      description: Admin upload Lesson
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                courseId:
+                  type: string
+                urlBooks:
+                  type: string
+                description:
+                  type: string
+                bookFile:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: OK
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  userEnroled: string
+              example:
+                userEnroled: "admin created books sucsess fully"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /admin/coursBooks/update/{id}:
+    put:
+      summary: Admin course book update
+      tags:
+        - Admin Course
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: this is the book ID to Admin updated book
+          example: 62b2328a357159caf671f4cd
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                urlBooks:
+                  type: string
+                description:
+                  type: string
+                bookFile:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: OK
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  userEnroled: string
+              example:
+                userEnroled: "admin update books sucsess fully"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error
+
+  /admin/coursBooks/delete/{id}:
+    delete:
+      summary: Admin delete course book
+      tags:
+        - Admin Course
+      description: Admin Delete course book
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: this is the book ID to Admin deleted course book
+          example: 62aec016a745eeaa456ff998
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                 deletedCourse: string
+              example:
+                deletedCourse: "Admin sucsess fuly deleted cours book"
+        404:
+          description: Not Found Course
+        500:
+          description: Internal Server Error

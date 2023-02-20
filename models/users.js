@@ -1,34 +1,21 @@
-const {Schema, model} = require("mongoose");
-
+const { model, Schema } = require("mongoose");
+const { ObjectId } = Schema.Types
 const userSchema = new Schema({
-    name:{
-        type:String,
-        required:true
-    },
-    email:{
-        type:String,
-        required:true
-    },
-    password:{
-        type:String,
-        required:true
-    },
-    userPhoto:String,
-    answerTrue:{
-        type:Number,
-        default:0
-    },
-    answers:[{
-        type:String,
-        ref:"User"
+    name:String,
+    email:String,
+    password:String,
+    userAvatar:String,
+    userCourseId:[{
+        type:ObjectId,
+        ref:"Course"
     }],
-    telNumber:Number,
-    specilization:[{
-        type:String
-    }]
+    userAdmin:{
+        type:Boolean,
+        default:false
+    }
 
 },{
     timestamps: true,
-});
+})
 
-model("User",userSchema)
+model("User", userSchema)
